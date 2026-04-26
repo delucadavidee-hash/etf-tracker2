@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: etf-tracker
+    runtime: python
+    region: frankfurt
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt && cd frontend && npm install && npm run build"
+    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: PYTHON_VERSION
+        value: "3.11.0"
